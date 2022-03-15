@@ -10,7 +10,7 @@ pipeline {
         stage('Trial') {
             steps {
                  withMaven {
-                    mvn verify test
+                    mvn test
                 }
             }
         }
