@@ -4,11 +4,13 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                sh './mvnw clean package'
+                echo 'Testing..'
+                sh './mvnw clean test'
             }
         }
+        
 //         stage('Trial') {
 //             steps {
 //                  withMaven {
@@ -16,14 +18,15 @@ pipeline {
 //                 }
 //             }
 //         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                sh './mvnw clean package'
             }
-        }
+        }       
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh './mvnw clean deploy'
             }
         }
     }
