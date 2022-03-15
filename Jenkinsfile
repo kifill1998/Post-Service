@@ -7,6 +7,13 @@ pipeline {
                 echo 'Building..'
             }
         }
+        stage('Trial') {
+            steps {
+                 withMaven {
+                    sh 'mvn test'
+                }
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
