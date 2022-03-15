@@ -38,4 +38,5 @@ pipeline {
                 tools: [java(), checkStyle(pattern: '**/build/**/main.xml', reportEncoding: 'UTF-8')]
             )
         }
+    }
 }
