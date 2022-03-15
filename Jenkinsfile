@@ -2,11 +2,7 @@ pipeline {
     agent any
 
     stages {        
-         stage('Test A') {
-             when  { anyOf {
-                 branch 'master/*'
-             }
-         }
+        stage('Test A') {          
              steps {
                   withMaven {
                      sh 'mvn test'
