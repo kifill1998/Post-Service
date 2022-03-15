@@ -2,17 +2,17 @@ pipeline {
     agent any
 
     stages {        
-         stage('Test') {
+         stage('Test A') {
             when  { anyOf {
                 branch 'master/*'
             }
         }
-      steps {
-        dir('src/') {
-          withMaven {
-            sh 'mvn test'
-          }
-        }
+            steps {
+                dir('src/') {
+                 withMaven {
+                    sh 'mvn test'
+                }
+            }
         stage('Build') {
             steps {
                 echo 'Building..'
