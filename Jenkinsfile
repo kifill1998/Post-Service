@@ -3,34 +3,19 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
-    stages {
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh './mvnw clean test'
-            }
+    stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
         }
-        
-//         stage('Trial') {
-//             steps {
-//                  withMaven {
-//                     mvn clean
-//                 }
-//             }
-//         }
-//          Adding Test Commit
-        stage('Build') {
-            steps {
-                sh './mvnw clean package'
-            }
-        }       
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                sh './mvnw clean deploy'
-            }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
         }
     }
+}
     post {
         always {
             junit(
