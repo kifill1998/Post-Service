@@ -28,7 +28,7 @@ Post Service is responsible for handling posts and related content, including im
 
 4. Clone repo from https://github.com/Revature-Reverse/Post-Service.git
 
-5. Open in IDE of your choice
+5. Open in IDE of your choice.
 
 
 6. Set environment variables:
