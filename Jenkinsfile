@@ -104,22 +104,22 @@ stage('Wait for approval') {
             }
         }
     }
- stage('Deploy to GKE') {
-                when {
-                    branch 'master'
-                }
-                steps{
-                    sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Post-Service/k8s/deployment.yml'
-                    sh 'cat ./Post-Service/k8s/deployment.yml'
-                    step([$class: 'KubernetesEngineBuilder',
-                        projectId: 'revbanking',
-                        clusterName: 'revbanking-gke',
-                        zone: 'us-central1',
-                        manifestPattern: 'Post-Service/k8s/',
-                        credentialsId: 'revbanking',
-                        verifyDeployments: true
-                    ])
-                               }
-                            }
-    } 
+//  stage('Deploy to GKE') {
+//                 when {
+//                     branch 'master'
+//                 }
+//                 steps{
+//                     sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Post-Service/k8s/deployment.yml'
+//                     sh 'cat ./Post-Service/k8s/deployment.yml'
+//                     step([$class: 'KubernetesEngineBuilder',
+//                         projectId: 'revbanking',
+//                         clusterName: 'revbanking-gke',
+//                         zone: 'us-central1',
+//                         manifestPattern: 'Post-Service/k8s/',
+//                         credentialsId: 'revbanking',
+//                         verifyDeployments: true
+//                     ])
+//                                }
+//                             }
+//     } 
 }
