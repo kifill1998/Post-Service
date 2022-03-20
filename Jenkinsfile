@@ -64,7 +64,7 @@ pipeline {
             dir('Post-Service/') {
                script {
                   echo "$registry:$currentBuild.number"
-                  dockerImage = docker.build "$registry"
+                  dockerImage = docker.build "$registry" .
                }
             }
            }
