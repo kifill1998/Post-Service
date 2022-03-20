@@ -43,19 +43,19 @@ pipeline {
             }
          }
        }
-//        stage('Build') {
-//           when {
-//              branch 'master'
-//           }
-//           steps {
-//             withMaven {
+       stage('Build') {
+          when {
+             branch 'master'
+          }
+          steps {
+            withMaven {
 
-//               sh 'mvn -f Post-Service/pom.xml clean install'
-//               sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
+              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kifill1998_Post-Service'
+              //sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
 
-//             }
-//           }
-//        }
+            }
+          }
+       }
        stage('Docker Build') {
            when {
                branch 'master'
@@ -64,7 +64,7 @@ pipeline {
             dir('Post-Service/') {
                script {
                   echo "$registry:$currentBuild.number"
-                  dockerImage = docker.build "$registry" .
+                  dockerImage = docker.build "$registry"
                }
             }
            }
