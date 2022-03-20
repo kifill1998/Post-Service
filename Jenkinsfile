@@ -61,7 +61,7 @@ pipeline {
                branch 'master'
            }
            steps {
-            dir('Post-Service/') {
+            dir('Post-Service') {
                script {
                   echo "$registry:$currentBuild.number"
                   dockerImage = docker.build "$registry"
