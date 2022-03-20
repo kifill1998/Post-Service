@@ -43,19 +43,19 @@ pipeline {
             }
          }
        }
-       stage('Build') {
-          when {
-             branch 'master'
-          }
-          steps {
-            withMaven {
+//        stage('Build') {
+//           when {
+//              branch 'master'
+//           }
+//           steps {
+//             withMaven {
 
-              sh 'mvn -f Post-Service/pom.xml clean install'
-              sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
+//               sh 'mvn -f Post-Service/pom.xml clean install'
+//               sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
 
-            }
-          }
-       }
+//             }
+//           }
+//        }
        stage('Docker Build') {
            when {
                branch 'master'
