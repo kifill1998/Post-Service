@@ -50,8 +50,8 @@ pipeline {
           steps {
             withMaven {
 
-              sh 'mvn -f Post-Service/pom.xml clean install'
-              sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
+              sh 'mvn -f clean install'
+              sh 'mvn -f clean package -DskipTests'
 
             }
           }
