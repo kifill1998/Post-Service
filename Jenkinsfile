@@ -50,9 +50,9 @@ pipeline {
           steps {
             withMaven {
 
-              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kifill1998_Post-Service -DskipTests'
-              sh 'mvn -f pom.xml clean install -DskipTests'
-              //sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
+              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kifill1998_Post-Service'
+              sh 'mvn -f pom.xml clean install'
+              sh 'mvn -f pom.xml clean package'
 
             }
           }
