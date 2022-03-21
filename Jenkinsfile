@@ -50,8 +50,8 @@ pipeline {
           steps {
             withMaven {
 
-              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kifill1998_Post-Service'
-              sh 'mvn -f pom.xml clean install'
+              sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kifill1998_Post-Service -DskipTests'
+              sh 'mvn -f pom.xml clean install -DskipTests'
               //sh 'mvn -f Post-Service/pom.xml clean package -DskipTests'
 
             }
@@ -105,22 +105,22 @@ stage('Wait for approval') {
             }
         }
     }
-//  stage('Deploy to GKE') {
-//                 when {
-//                     branch 'master'
-//                 }
-//                 steps{
-//                     sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Post-Service/k8s/deployment.yml'
-//                     sh 'cat ./Post-Service/k8s/deployment.yml'
-//                     step([$class: 'KubernetesEngineBuilder',
-//                         projectId: 'revbanking',
-//                         clusterName: 'revbanking-gke',
-//                         zone: 'us-central1',
-//                         manifestPattern: 'Post-Service/k8s/',
-//                         credentialsId: 'revbanking',
-//                         verifyDeployments: true
-//                     ])
-//                                }
-//                             }
+ stage('Deploy to GKE') {
+                when {
+                    branch 'master'
+                }
+                steps{
+                    sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./k8s/deployment.yml'
+                    sh 'cat ./k8s/deployment.yml'
+                    step([$class: 'KubernetesEngineBuilder',
+                        projectId: 'revbanking',
+                        clusterName: 'revbanking-gke',
+                        zone: 'us-central1',
+                        manifestPattern: 'k8s/',
+                        credentialsId: 'revbanking',
+                        verifyDeployments: true
+                    ])
+                               }
+                            }
     } 
 }
