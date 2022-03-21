@@ -15,7 +15,7 @@ spec:
         app: post-service
     spec:
       containers:
-        - image: ijayzo/proj1:%TAG%
+        - image: kifill1998/kevinifill:%TAG%
           imagePullPolicy: Always
           name: post-service
           ports:
