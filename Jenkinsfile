@@ -1,7 +1,7 @@
 pipeline {
  environment {
         registry = 'kifill1998/kevinifill'
-        dockerHubCreds = 'docker_hub'
+        dockerHubCreds = 'docker_hub1'
         dockerImage = ''
     }
  agent any
